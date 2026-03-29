@@ -76,6 +76,8 @@
     shellAbbrs = {
       ccd = "claude --dangerously-skip-permissions";
       hms = "home-manager switch --flake .";
+      ls = "eza";
+      cat = "bat --theme=ansi";
     };
     functions = {
       _pure_prompt_node = builtins.readFile ./fish/functions/_pure_prompt_node.fish;

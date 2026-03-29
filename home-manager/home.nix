@@ -82,7 +82,8 @@
     enable = true;
     enableFishIntegration = true;
     settings = {
-      style = "full";
+      style = "compact";
+      inline_height = 0;
       ctrl_n_shortcuts = true;
       enter_accept = true;
       sync.records = true;

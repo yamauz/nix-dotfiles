@@ -19,6 +19,11 @@
   # environment.
   home.packages = [
     pkgs.nerd-fonts.meslo-lg
+    pkgs.ripgrep
+    pkgs.fd
+    # pkgs.fzf  # programs.fzf で管理
+    pkgs.bat
+    pkgs.eza
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -76,6 +81,10 @@
       _pure_prompt_node = builtins.readFile ./fish/functions/_pure_prompt_node.fish;
       _pure_prompt_first_line = builtins.readFile ./fish/functions/_pure_prompt_first_line.fish;
     };
+  };
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
   };
   programs.zoxide = {
     enable = true;

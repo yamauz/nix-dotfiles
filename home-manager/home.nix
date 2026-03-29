@@ -24,6 +24,9 @@
     # pkgs.fzf  # programs.fzf で管理
     pkgs.bat
     pkgs.eza
+    pkgs.gnupg
+    pkgs.bun
+    pkgs.rustup
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

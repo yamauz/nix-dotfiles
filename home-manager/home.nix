@@ -77,6 +77,12 @@
     enable = true;
     interactiveShellInit = builtins.readFile ./fish/interactive.fish;
     shellInit = builtins.readFile ./fish/init.fish;
+    plugins = [
+      {
+        name = "pure";
+        src = pkgs.fishPlugins.pure.src;
+      }
+    ];
   };
   programs.zoxide = {
     enable = true;

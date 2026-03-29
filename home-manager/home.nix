@@ -92,6 +92,10 @@
       sync.records = true;
     };
   };
+  programs.mise = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;

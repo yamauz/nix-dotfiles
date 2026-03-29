@@ -73,5 +73,9 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = builtins.readFile ./fish/interactive.fish;
+    shellInit = builtins.readFile ./fish/init.fish;
+  };
 }

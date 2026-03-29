@@ -81,5 +81,11 @@
   programs.atuin = {
     enable = true;
     enableFishIntegration = true;
+    settings = {
+      style = "compact";
+      ctrl_n_shortcuts = true;
+      enter_accept = true;
+      sync.records = true;
+    };
   };
 }

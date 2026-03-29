@@ -78,6 +78,10 @@
     interactiveShellInit = builtins.readFile ./fish/interactive.fish;
     shellInit = builtins.readFile ./fish/init.fish;
   };
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   programs.atuin = {
     enable = true;
     enableFishIntegration = true;

@@ -78,4 +78,8 @@
     interactiveShellInit = builtins.readFile ./fish/interactive.fish;
     shellInit = builtins.readFile ./fish/init.fish;
   };
+  programs.atuin = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 }

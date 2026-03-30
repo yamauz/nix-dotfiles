@@ -118,6 +118,66 @@
       };
     };
   };
+  programs.zed-editor = {
+    enable = true;
+    userSettings = {
+      assistant = {
+        default_model = {
+          provider = "zed.dev";
+          model = "claude-3-5-sonnet-latest";
+        };
+        version = "2";
+      };
+      theme = "Summercamp";
+      vim_mode = true;
+      ui_font_size = 16;
+      buffer_font_size = 12;
+      command_aliases = {
+        "@" = "V";
+      };
+      "vim.normalModeKeyBindings" = [
+        {
+          before = [ "@" ];
+          after = [ "<C-v>" ];
+        }
+      ];
+    };
+    userKeymaps = [
+      {
+        context = "Workspace";
+        bindings = { };
+      }
+      {
+        context = "Editor";
+        bindings = {
+          "space w" = "workspace::Save";
+          "ctrl-w" = "pane::CloseActiveItem";
+        };
+      }
+      {
+        context = "vim_mode == visual";
+        bindings = {
+          "shift-s" = [
+            "vim::PushOperator"
+            { "AddSurrounds" = { }; }
+          ];
+        };
+      }
+      {
+        context = "vim_mode == normal || vim_mode == visual";
+        bindings = {
+          "@" = "editor::SelectLargerSyntaxNode";
+          "ctrl-@" = "editor::SelectSmallerSyntaxNode";
+        };
+      }
+      {
+        context = "VimControl && !menu";
+        bindings = {
+          "ctrl-c" = [ "vim::SwitchMode" "Normal" ];
+        };
+      }
+    ];
+  };
   programs.ghostty = {
     enable = true;
     package = pkgs.ghostty-bin;

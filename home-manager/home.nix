@@ -33,6 +33,7 @@
     pkgs.mkcert
     pkgs.python3
     pkgs.ruby
+    pkgs.slack
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

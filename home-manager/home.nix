@@ -180,6 +180,79 @@
       }
     ];
   };
+  programs.vscode = {
+    enable = true;
+    mutableExtensionsDir = false;
+    userSettings = import ./vscode/settings.nix;
+    keybindings = import ./vscode/keybindings.nix;
+    extensions =
+      (with pkgs.vscode-extensions; [
+        # nixpkgs
+        _42crunch.vscode-openapi
+        adpyke.codesnap
+        anthropic.claude-code
+        bbenoist.nix
+        bierner.markdown-mermaid
+        bmewburn.vscode-intelephense-client
+        bradlc.vscode-tailwindcss
+        cweijan.dbclient-jdbc
+        dart-code.dart-code
+        dart-code.flutter
+        dbaeumer.vscode-eslint
+        eamodio.gitlens
+        esbenp.prettier-vscode
+        file-icons.file-icons
+        firsttris.vscode-jest-runner
+        formulahendry.auto-rename-tag
+        github.copilot-chat
+        github.github-vscode-theme
+        github.vscode-github-actions
+        github.vscode-pull-request-github
+        gruntfuggly.todo-tree
+        johnpapa.vscode-peacock
+        mhutchie.git-graph
+        mikestead.dotenv
+        ms-azuretools.vscode-containers
+        ms-azuretools.vscode-docker
+        ms-dotnettools.vscode-dotnet-runtime
+        ms-python.black-formatter
+        ms-python.debugpy
+        ms-python.python
+        ms-python.vscode-pylance
+        ms-vscode-remote.remote-containers
+        ms-vscode.hexeditor
+        ms-vsliveshare.vsliveshare
+        naumovs.color-highlight
+        oderwat.indent-rainbow
+        prisma.prisma
+        redhat.vscode-yaml
+        ritwickdey.liveserver
+        rooveterinaryinc.roo-cline
+        rust-lang.rust-analyzer
+        saoudrizwan.claude-dev
+        skyapps.fish-vscode
+        streetsidesoftware.code-spell-checker
+        tamasfe.even-better-toml
+        usernamehw.errorlens
+        vadimcn.vscode-lldb
+        vscode-icons-team.vscode-icons
+        vscodevim.vim
+        wix.vscode-import-cost
+        yoavbls.pretty-ts-errors
+        yzhang.markdown-all-in-one
+      ])
+      ++ (with pkgs.vscode-marketplace; [
+        # marketplace overlay
+        antiantisepticeye.vscode-color-picker
+        draivin.hscopes
+        draivin.hsnips
+        janisdd.vscode-edit-csv
+        lightyen.tailwindcss-intellisense-twin
+        moonbit.moonbit-lang
+        ms-playwright.playwright
+        netcorext.uuid-generator
+      ]);
+  };
   programs.ghostty = {
     enable = true;
     package = pkgs.ghostty-bin;

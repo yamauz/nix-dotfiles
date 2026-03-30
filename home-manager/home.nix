@@ -78,7 +78,7 @@
     ];
     shellAbbrs = {
       ccd = "claude --dangerously-skip-permissions";
-      hms = "home-manager switch --flake .";
+      drs = "sudo darwin-rebuild switch --flake ~/dev/dotfiles";
       ls = "eza";
       cat = "bat --theme=ansi";
     };

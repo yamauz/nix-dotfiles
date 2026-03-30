@@ -35,6 +35,7 @@
     pkgs.ruby
     pkgs.slack
     pkgs.google-chrome
+    pkgs.ngrok
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

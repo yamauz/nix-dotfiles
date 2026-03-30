@@ -24,7 +24,6 @@
     brews = [
     ];
     casks = [
-      "ngrok"
     ];
   };
 }

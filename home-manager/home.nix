@@ -21,12 +21,18 @@
     pkgs.nerd-fonts.meslo-lg
     pkgs.ripgrep
     pkgs.fd
-    # pkgs.fzf  # programs.fzf で管理
     pkgs.bat
     pkgs.eza
     pkgs.gnupg
     pkgs.bun
     pkgs.rustup
+    pkgs.cpulimit
+    pkgs.ffmpeg
+    pkgs.fvm
+    pkgs.gh
+    pkgs.mkcert
+    pkgs.python3
+    pkgs.ruby
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

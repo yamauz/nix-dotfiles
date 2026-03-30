@@ -7,7 +7,7 @@
     enable = true;
     user = "yamauz";
     enableRosetta = false;
-    autoMigrate = true;
+    autoMigrate = false;
   };
 
   homebrew = {
@@ -18,20 +18,10 @@
     onActivation = {
       autoUpdate = false;
       upgrade = true;
+      cleanup = "uninstall";
     };
 
     brews = [
-      "cmake"
-      "cpulimit"
-      "ffmpeg"
-      "fvm"
-      "gh"
-      "mkcert"
-      "neovim"
-      "python@3.10"
-      "ruby"
-      "tmux"
-      "x264"
     ];
     casks = [
       "ngrok"

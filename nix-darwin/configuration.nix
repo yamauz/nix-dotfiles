@@ -19,7 +19,7 @@
 
   launchd.daemons.throttle-noisy-processes = {
     script = ''
-      CPULIMIT=/opt/homebrew/bin/cpulimit
+      CPULIMIT=/etc/profiles/per-user/yamauz/bin/cpulimit
       for PROC in CybereasonAv SkyDaemon; do
         PID=$(pgrep -x "$PROC")
         if [ -z "$PID" ]; then

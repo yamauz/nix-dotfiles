@@ -12,6 +12,7 @@
 
   imports = [
     ./home_manager.nix
+    ./homebrew.nix
   ];
 
   security.pam.services.sudo_local.touchIdAuth = true;

@@ -22,7 +22,7 @@
 
     brews = [
       "cmake"
-      "cputhrottle"
+      "cpulimit"
       "ffmpeg"
       "fvm"
       "gh"

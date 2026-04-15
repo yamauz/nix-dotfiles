@@ -36,7 +36,6 @@
     pkgs.slack
     pkgs.google-chrome
     pkgs.ngrok
-    pkgs.docker
     pkgs.raycast
   ];
 
@@ -183,6 +182,27 @@
   };
   programs.vscode = {
     enable = true;
+    package = pkgs.vscode.overrideAttrs (old: {
+      # Workaround: nixpkgs generic.nix unconditionally references glibc.bin in
+      # preFixup makeBinPath, which fails to evaluate on darwin.
+      # Replace preFixup with a darwin-appropriate version.
+      preFixup = ''
+        gappsWrapperArgs+=(
+          --prefix PATH : ${
+            pkgs.lib.makeBinPath [
+              pkgs.glib
+              pkgs.gawk
+              pkgs.gnugrep
+              pkgs.gnused
+              pkgs.coreutils
+              pkgs.which
+            ]
+          }
+          --add-flags "''${NIXOS_OZONE_WL:+''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true --wayland-text-input-version=3}}"
+          --add-flags ${pkgs.lib.escapeShellArg ""}
+        )
+      '';
+    });
     mutableExtensionsDir = false;
     profiles.default = {
       userSettings = import ./vscode/settings.nix;
@@ -191,7 +211,7 @@
         (with pkgs.vscode-extensions; [
           # nixpkgs
           adpyke.codesnap
-          anthropic.claude-code
+          # anthropic.claude-code  # temporarily disabled: nixpkgs hash mismatch, install from marketplace
           bbenoist.nix
           bierner.markdown-mermaid
           bmewburn.vscode-intelephense-client

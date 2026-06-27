@@ -11,8 +11,6 @@
       url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
   outputs =
@@ -21,19 +19,16 @@
       nixpkgs,
       home-manager,
       nix-darwin,
-      nix-homebrew,
-      nix-vscode-extensions,
       ...
     }:
     {
       darwinConfigurations."J12TPWOX26noMacBook-Pro" = nix-darwin.lib.darwinSystem {
         specialArgs = {
-          inherit self nix-homebrew nix-vscode-extensions;
+          inherit self;
         };
         modules = [
           ./nix-darwin/configuration.nix
           home-manager.darwinModules.home-manager
-          nix-homebrew.darwinModules.nix-homebrew
         ];
       };
     };

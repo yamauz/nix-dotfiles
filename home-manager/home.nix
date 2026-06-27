@@ -109,6 +109,12 @@
   programs.mise = {
     enable = true;
     enableFishIntegration = true;
+    # mise 2026.6.11 のビルド時テスト(oci::layer のパーミッションbit検証)が
+    # macOS/サンドボックス環境で落ちるため、チェックを無効化して使う。
+    package = pkgs.mise.overrideAttrs (o: {
+      doCheck = false;
+      doInstallCheck = false;
+    });
   };
   programs.yazi = {
     enable = true;

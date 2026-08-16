@@ -129,6 +129,7 @@
     "zed/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/home-manager/zed/settings.json";
     "zed/keymap.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/home-manager/zed/keymap.json";
     "zed/tasks.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/home-manager/zed/tasks.json";
+    "zed/snippets".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/home-manager/zed/snippets";
   };
   programs.ghostty = {
     enable = true;

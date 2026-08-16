@@ -80,6 +80,10 @@
   // Vimキーバインドを有効化
   "vim_mode": true,
 
+  // スニペット(~/.config/zed/snippets/)を補完候補の最上位に表示する。
+  // prefix入力後に Tab/Enter 一発で展開できるようにするため
+  "snippet_sort_order": "top",
+
   // UI(メニュー・パネル等)のフォントサイズ
   "ui_font_size": 16,
 

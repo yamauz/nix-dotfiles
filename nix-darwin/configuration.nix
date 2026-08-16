@@ -17,6 +17,13 @@
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
+  # darwin-rebuild のみパスワードなしでsudo実行を許可
+  # (TTYを持たないエージェント経由でも drs を実行できるようにするため。
+  #  darwin-rebuildはシステム設定を書き換えられるので実質root相当の権限委譲である点に注意)
+  security.sudo.extraConfig = ''
+    yamauz ALL=(ALL:ALL) NOPASSWD: /run/current-system/sw/bin/darwin-rebuild
+  '';
+
   launchd.daemons.throttle-noisy-processes = {
     script = ''
       CPULIMIT=/etc/profiles/per-user/yamauz/bin/cpulimit

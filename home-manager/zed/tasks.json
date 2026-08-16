@@ -1,0 +1,31 @@
+[
+  {
+    // 全変更をstash(untrackedファイル込み)
+    "label": "git: stash all (-u)",
+    "command": "git stash -u",
+    "reveal": "no_focus",
+    "hide": "on_success"
+  },
+  {
+    // trackedファイルの変更をすべて破棄(確認なしで即実行なので注意)
+    "label": "git: discard tracked changes",
+    "command": "git restore .",
+    "reveal": "no_focus",
+    "hide": "on_success"
+  },
+  {
+    // 自分にレビューリクエストが来ている未レビューのPR一覧
+    // タイトル自体がリンク(OSC 8)になっており、cmd+クリックでPRをブラウザで開ける
+    "label": "gh: PRs awaiting my review",
+    "command": "gh pr list --search 'review-requested:@me' --limit 30 --json number,title,url,isDraft --template '{{range .}}{{hyperlink .url (printf \"%s %s\" (color \"cyan+b\" (printf \"#%v\" .number)) .title)}}{{if .isDraft}}{{color \"black+h\" \" [DRAFT]\"}}{{end}}{{\"\\n\"}}{{end}}'",
+    "reveal": "always",
+    "hide": "never"
+  },
+  {
+    // 自分が作成したopenなPR一覧(ドラフト含む)。タイトルcmd+クリックでブラウザで開ける
+    "label": "gh: my open PRs",
+    "command": "gh pr list --author '@me' --limit 30 --json number,title,url,isDraft --template '{{range .}}{{hyperlink .url (printf \"%s %s\" (color \"green+b\" (printf \"#%v\" .number)) .title)}}{{if .isDraft}}{{color \"black+h\" \" [DRAFT]\"}}{{end}}{{\"\\n\"}}{{end}}'",
+    "reveal": "always",
+    "hide": "never"
+  }
+]

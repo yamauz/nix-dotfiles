@@ -1,0 +1,99 @@
+[
+  {
+    // ドック(gitパネル等のサイドパネル)からパネルを閉じずにエディタへ戻る
+    // 左ドック用: 右方向=エディタ。ターミナルは除外(シェルのctrl-e=行末移動を守る)
+    "context": "Dock && !Terminal",
+    "bindings": {
+      "ctrl-e": "workspace::ActivatePaneRight"
+    }
+  },
+  {
+    // エージェントパネルは右ドックなので左方向=エディタ(上のDock設定を上書き)
+    "context": "AgentPanel",
+    "bindings": {
+      "ctrl-e": "workspace::ActivatePaneLeft"
+    }
+  },
+  {
+    // エディタから左ドック(gitパネル等)へ。
+    // 注意: vim標準のctrl-e(1行下スクロール)を上書きしている
+    "context": "Editor && mode == full",
+    "bindings": {
+      "ctrl-e": "workspace::ActivatePaneLeft",
+      // 現在ファイルのdiffを専用タブで開く(g = git)
+      // 注意: vimのctrl-g(ファイル情報表示)を上書きしている
+      "ctrl-g": "git::OpenFileDiff"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "space w": "workspace::Save",
+      "ctrl-w": "pane::CloseActiveItem"
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "ctrl-c": "vim::SwitchToNormalMode"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      // 未コミットの全変更をまとめて表示(Uncommitted Changesビュー)
+      "ctrl-shift-d": "git::Diff"
+    }
+  },
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "@": "editor::SelectLargerSyntaxNode",
+      "ctrl-@": "editor::SelectSmallerSyntaxNode",
+      // 未コミットの全変更をまとめて表示(g d = git diff)
+      "space g d": "git::Diff",
+      // PR相当のdiffを表示: 比較先ブランチのピッカーが開くのでベースブランチを選ぶ(g p = git PR)
+      // git::ReviewDiffは「diffをAIレビューに送る」機能なので用途が異なる
+      "space g p": "git::DiffBranch",
+      // 全変更をstash(untrackedファイル込み)(g s = git stash)
+      // git::StashAll等のrepo操作系アクションはgitパネルフォーカス時しか動かないため、タスク経由で実行
+      "space g s": ["task::Spawn", { "task_name": "git: stash all (-u)" }],
+      // trackedファイルの変更をすべて破棄(g r = git restore)
+      // 注意: 確認なしで即実行される復元不可の破壊的操作。untrackedファイルには影響しない
+      "space g r": ["task::Spawn", { "task_name": "git: discard tracked changes" }],
+      // EasyMotion風: 画面内の単語にラベルを表示してジャンプ
+      "space s": "vim::HelixJumpToWord",
+      // 自分宛ての未レビューPR一覧をターミナルに表示(g o = git open PRs)
+      "space g o": ["task::Spawn", { "task_name": "gh: PRs awaiting my review" }],
+      // 自分が作成したopenなPR一覧(ドラフト含む)(g m = git mine)
+      "space g m": ["task::Spawn", { "task_name": "gh: my open PRs" }],
+      // ターミナルへフォーカス(閉じていれば開く)
+      // 注意: vimのctrl-t(タグスタック戻り)を上書き。戻るにはctrl-oを使う
+      "ctrl-t": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    // ターミナルからエディタへ戻る(ターミナルは開いたまま)
+    // 注意: シェルのctrl-t(transpose-chars)を上書き
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-t": "workspace::ActivatePaneUp"
+    }
+  },
+  {
+    // diffビュー内で開いたときと同じキーを押したら閉じる(トグルにする)
+    // diffビューの実体は multibuffer + diffs_expanded なEditor(Keyboard Contextビューで確認済み)
+    "context": "(vim_mode == normal || vim_mode == visual) && multibuffer && diffs_expanded",
+    "bindings": {
+      "ctrl-g": "pane::CloseActiveItem",
+      "space g d": "pane::CloseActiveItem",
+      "space g p": "pane::CloseActiveItem"
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-s": "vim::PushAddSurrounds"
+    }
+  }
+]

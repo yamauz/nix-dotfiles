@@ -127,65 +127,14 @@
       };
     };
   };
-  programs.zed-editor = {
-    enable = false;
-    userSettings = {
-      assistant = {
-        default_model = {
-          provider = "zed.dev";
-          model = "claude-3-5-sonnet-latest";
-        };
-        version = "2";
-      };
-      theme = "Summercamp";
-      vim_mode = true;
-      ui_font_size = 16;
-      buffer_font_size = 12;
-      command_aliases = {
-        "@" = "V";
-      };
-      "vim.normalModeKeyBindings" = [
-        {
-          before = [ "@" ];
-          after = [ "<C-v>" ];
-        }
-      ];
-    };
-    userKeymaps = [
-      {
-        context = "Workspace";
-        bindings = { };
-      }
-      {
-        context = "Editor";
-        bindings = {
-          "space w" = "workspace::Save";
-          "ctrl-w" = "pane::CloseActiveItem";
-        };
-      }
-      {
-        context = "vim_mode == visual";
-        bindings = {
-          "shift-s" = [
-            "vim::PushOperator"
-            { "AddSurrounds" = { }; }
-          ];
-        };
-      }
-      {
-        context = "vim_mode == normal || vim_mode == visual";
-        bindings = {
-          "@" = "editor::SelectLargerSyntaxNode";
-          "ctrl-@" = "editor::SelectSmallerSyntaxNode";
-        };
-      }
-      {
-        context = "VimControl && !menu";
-        bindings = {
-          "ctrl-c" = [ "vim::SwitchMode" "Normal" ];
-        };
-      }
-    ];
+  # Zed の設定ファイル(ユーザー設定・キーマップ・タスク)をリポジトリで管理する。
+  # Zed は settings.json を自分で書き換える(favorite_models の自動管理や設定UI経由の変更)ため、
+  # nixストアへの読み取り専用リンクではなくリポジトリ実体への編集可能な symlink にする。
+  # Zed側で編集した変更はそのまま git diff に現れる。Zed本体はNix管理しない(公式アプリを使用)。
+  xdg.configFile = {
+    "zed/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/home-manager/zed/settings.json";
+    "zed/keymap.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/home-manager/zed/keymap.json";
+    "zed/tasks.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/home-manager/zed/tasks.json";
   };
   programs.ghostty = {
     enable = true;

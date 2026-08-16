@@ -1,0 +1,79 @@
+{
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
+  // ---- AIエージェント(パネル・実行権限) ----
+  "agent": {
+    // エージェントパネルの表示位置(favorite_models等はZedが自動管理)
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+    // エージェントが実行するコマンドのOSサンドボックス許可
+    "sandbox_permissions": {
+      // ネットワークを許可(git push/pull等のリモート操作に必要)
+      "allow_all_hosts": true,
+      // ワークツリー外で書き込みを許可するパス
+      "write_paths": ["~/dev", "~/.config"]
+    },
+    // ツール実行の確認ルール
+    "tool_permissions": {
+      "tools": {
+        "terminal": {
+          // gitコマンドは確認なしで許可
+          "always_allow": [{ "pattern": "^git\\s" }]
+        }
+      }
+    }
+  },
+
+  "icon_theme": "Material Icon Theme",
+  "diff_view_style": "split",
+  "theme": "Catppuccin Mocha",
+  // CLI(`zed <ファイル>`)で開くとき、新しいウィンドウではなく既存のウィンドウで開く
+  "cli_default_open_behavior": "existing_window",
+
+  // プレビュータブを無効化:
+  // シングルクリックで開いてもタブが再利用(置き換え)されず、常に新しいタブで開く
+  "preview_tabs": {
+    "enabled": false
+  },
+
+  // ---- 各パネルの表示位置(いずれもデフォルト値のまま) ----
+
+  // プロジェクト(ファイルツリー)パネル
+  "project_panel": {
+    "dock": "left"
+  },
+
+  // アウトライン(シンボル一覧)パネル
+  "outline_panel": {
+    "dock": "left"
+  },
+
+  // コラボレーション(共同編集)パネル
+  "collaboration_panel": {
+    "dock": "left"
+  },
+
+  // Gitパネル
+  "git_panel": {
+    "dock": "left"
+  },
+
+  // ---- エディタ全般 ----
+
+  // 保存時にフォーマッタを実行(このZedバージョンはデフォルトがoffのため明示)
+  // formatterはデフォルトの"auto"のまま = prettier設定があるプロジェクトではprettierが使われる
+  "format_on_save": "on",
+
+  // Vimキーバインドを有効化
+  "vim_mode": true,
+
+  // UI(メニュー・パネル等)のフォントサイズ
+  "ui_font_size": 16,
+
+  // エディタ本文のフォントサイズ
+  "buffer_font_size": 12
+}

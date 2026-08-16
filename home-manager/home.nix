@@ -85,6 +85,7 @@
     functions = {
       _pure_prompt_node = builtins.readFile ./fish/functions/_pure_prompt_node.fish;
       _pure_prompt_first_line = builtins.readFile ./fish/functions/_pure_prompt_first_line.fish;
+      ghp = builtins.readFile ./fish/functions/ghp.fish;
     };
   };
   programs.fzf = {

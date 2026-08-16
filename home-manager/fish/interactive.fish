@@ -11,3 +11,8 @@ set --universal pure_color_light c6d0f5             # root username (text)
 set --universal pure_color_normal c6d0f5            # jobs (text)
 set --universal pure_color_git_branch ca9ee6        # git branch override (mauve)
 set --universal pure_color_git_dirty e5c890         # git dirty (yellow)
+
+# Vite+ (https://viteplus.dev)
+if test -f $HOME/.vite-plus/env.fish
+    source $HOME/.vite-plus/env.fish
+end

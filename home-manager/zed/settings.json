@@ -62,6 +62,15 @@
     "dock": "left"
   },
 
+  // ---- ターミナル ----
+
+  // デフォルトシェルをfishにする(nix管理のためフルパスで指定)
+  "terminal": {
+    "shell": {
+      "program": "/etc/profiles/per-user/yamauz/bin/fish"
+    }
+  },
+
   // ---- エディタ全般 ----
 
   // 保存時にフォーマッタを実行(このZedバージョンはデフォルトがoffのため明示)

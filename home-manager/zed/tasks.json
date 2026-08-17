@@ -27,5 +27,37 @@
     "command": "gh pr list --author '@me' --limit 30 --json number,title,url,isDraft --template '{{range .}}{{hyperlink .url (printf \"%s %s\" (color \"green+b\" (printf \"#%v\" .number)) .title)}}{{if .isDraft}}{{color \"black+h\" \" [DRAFT]\"}}{{end}}{{\"\\n\"}}{{end}}'",
     "reveal": "always",
     "hide": "never"
+  },
+
+  // ---- Git Graph のカスタムコマンド(コミット/refラベルの右クリックメニュー) ----
+
+  {
+    // refラベル(ブランチ・タグ)右クリック時: そのrefをチェックアウト
+    // リモートref(origin/...)の場合は detached HEAD になる点に注意
+    "label": "Check out $ZED_GIT_REF",
+    "command": "git",
+    "args": ["checkout", "$ZED_GIT_REF"],
+    "tags": ["git-command"],
+    "reveal": "no_focus",
+    "hide": "on_success"
+  },
+  {
+    // リモートref右クリック時: 追跡ローカルブランチを作って切り替え
+    // (既にローカルブランチがある場合はそちらに切り替わる)
+    "label": "Switch to tracking branch of $ZED_GIT_REF",
+    "command": "git",
+    "args": ["switch", "--track", "$ZED_GIT_REF"],
+    "tags": ["git-command"],
+    "reveal": "no_focus",
+    "hide": "on_success"
+  },
+  {
+    // コミット行右クリック時: そのコミットをチェックアウト(detached HEAD)
+    "label": "Check out commit $ZED_GIT_SHA_SHORT",
+    "command": "git",
+    "args": ["checkout", "$ZED_GIT_SHA"],
+    "tags": ["git-command"],
+    "reveal": "no_focus",
+    "hide": "on_success"
   }
 ]

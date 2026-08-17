@@ -36,7 +36,7 @@
 
   "icon_theme": "Material Icon Theme",
   "diff_view_style": "split",
-  "theme": "Catppuccin Mocha",
+  "theme": "GitHub Dark Default",
   // CLI(`zed <ファイル>`)で開くとき、新しいウィンドウではなく既存のウィンドウで開く
   "cli_default_open_behavior": "existing_window",
 

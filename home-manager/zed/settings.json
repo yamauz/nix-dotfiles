@@ -8,6 +8,12 @@
   "agent": {
     // エージェントパネルの表示位置(favorite_models等はZedが自動管理)
     "dock": "right",
+    // 編集(diff)カードをデフォルトで折りたたむ
+    // 注: Zedネイティブのカードにのみ有効。ACPエージェント(claude-acp等)の
+    // トランスクリプトブロックには現状効かない (zed#58333)
+    "expand_edit_card": false,
+    // ターミナル実行カードをデフォルトで折りたたむ(実行中も閉じたまま)
+    "expand_terminal_card": false,
     "favorite_models": [],
     "model_parameters": [],
     // エージェントが実行するコマンドのOSサンドボックス許可

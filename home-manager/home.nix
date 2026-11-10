@@ -22,6 +22,7 @@
     pkgs.ripgrep
     pkgs.fd
     pkgs.bat
+    pkgs.bitwarden-cli
     pkgs.eza
     pkgs.gnupg
     pkgs.bun

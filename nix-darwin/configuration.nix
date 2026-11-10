@@ -25,6 +25,7 @@
   homebrew = {
     enable = true;
     casks = [
+      "bitwarden"
       "docker-desktop"
     ];
     onActivation.cleanup = "none";
